@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>
+        <%= title %>
+    </title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="/plugins/animation/css/animate.min.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Google sign in script -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="4570597769-7h8us0kc3jjv31r3bn45vnbmnsf8s791.apps.googleusercontent.com">
+</head>
+
+<body>
+    <!-- [ signin-img-tabs ] start -->
+    <div class="blur-bg-images"></div>
+    <div class="auth-wrapper">
+        <div class="auth-content container">
+            <div class="card">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h2 class="mb-4">Library Management System <span class="text-c-blue"
+                                    style="color: #feca05;">Login</span></h2>
+                            <p class="mb-8">Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                                Lorem Ipsum has been the industry's.</p>
+                            <form action="/" method="POST">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="feather icon-mail"></i></span>
+                                    </div>
+                                    <input type="email" name="email" class="form-control" placeholder="User Name"
+                                        required>
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="feather icon-lock"></i></span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" placeholder="Password"
+                                        required>
+                                </div>
+                                <div class="form-group text-left mt-4">
+                                    <div class="checkbox checkbox-primary d-inline">
+                                        <input type="checkbox" name="remember_me" id="remember-me">
+                                        <label for="remember-me" class="cr"> Save credentials</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-warning mb-4">LOGIN</button>
+                            </form>
+
+                            <div class="saprator"><span>OR</span></div>
+                            <button class="btn btn-facebook mb-2 mr-2"><i
+                                    class="fab fa-facebook-f"></i>facebook</button>
+                            <div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onSignInFailure"></div>
+                            <a href="#" onclick="signOut();">Sign out</a>
+                           
+                            <button class="btn btn-twitter mb-2 mr-2"><i class="fab fa-twitter"></i>Twitter</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 d-none d-md-block">
+                        <img src="/images/auth/img-auth-2.jpg" alt=""
+                            class="img-fluid bd-placeholder-img bd-placeholder-img-lg d-block w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ signin-img-tabs ] end -->
+
+    <!-- Required Js -->
+    <script src="/js/vendor-all.min.js">
+
+    </script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        $('.toggle-btn').on('click', function () {
+            $('.toggle-block').toggle();
+        })
+    </script>
+    <script>
+        function onSignIn(googleUser) {
+          
+            console.log("inside signin function");
+
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+        function onSignInFailure(googleUser) {
+           
+            // console.log("inside signin function");
+
+            // var profile = googleUser.getBasicProfile();
+            // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            // console.log('Name: ' + profile.getName());
+            // console.log('Image URL: ' + profile.getImageUrl());
+            // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
+    <script>
+        function signOut() {
+            console.log("inside logout function ");
+
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+
+
+
+</body>
+
+</html>

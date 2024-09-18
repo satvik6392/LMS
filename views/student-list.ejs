@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>LMS</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <meta name="author" content="LMS" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="/plugins/animation/css/animate.min.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/css/style.css">
+    
+    
+
+
+    <!-- data tables css -->
+    <link rel="stylesheet" href="/plugins/data-tables/css/datatables.min.css">
+    <!-- page css -->
+    <link rel="stylesheet" href="/css/pages/pages.css">
+
+</head>
+
+<body class="">
+	<!-- [ Pre-loader ] start -->
+	<div class="loader-bg">
+		<div class="loader-track">
+			<div class="loader-fill"></div>
+		</div>
+	</div>
+	<!-- [ Pre-loader ] End -->
+	<!-- [ navigation menu ] start -->
+	<%- include('partials/nav')%>
+	<!-- [ navigation menu ] end -->
+
+	
+
+	<!-- [ Header ] start -->
+	<header class="navbar pcoded-header navbar-expand-lg navbar-light headerpos-fixed">
+		
+			<div class="m-header">
+				<a class="mobile-menu" id="mobile-collapse1" href="#!"><span></span></a>
+				<a href="book-list.html" class="b-brand">
+					<div class="b-bg">
+						E
+					</div>
+					<span class="b-title">Elite Able</span>
+				</a>
+			</div>
+			<a class="mobile-menu" id="mobile-header" href="#!">
+				<i class="feather icon-more-horizontal"></i>
+			</a>
+			<div class="collapse navbar-collapse">
+				<a href="#!" class="mob-toggler"></a>
+				<ul class="navbar-nav mr-auto">
+					<li>
+						<!-- ============================================================================================= -->
+						<!-- remove .page-header div if you want breadcumb in bottom of header -->
+						<!-- ============================================================================================= -->
+						<!-- [ breadcrumb ] start -->
+						<div class="page-header">
+						</div>
+						<!-- [ breadcrumb ] end -->
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					<li>Welcome <%= username%></li>
+					<li>
+						<div class="dropdown drp-user">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="icon feather icon-settings"></i>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right profile-notification">
+								<div class="pro-head">
+									<img src="/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
+									<span>Admin</span>
+									<a href="/" class="dud-logout" title="Logout">
+										<i class="feather icon-log-out"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			
+	</header>
+	<!-- [ Header ] end -->
+	
+
+	
+
+
+<!-- [ Main Content ] start -->
+<section class="pcoded-main-container">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- [ breadcrumb ] start -->
+                        <div class="page-header">
+                            <div class="page-block">
+                                <div class="row align-items-center">
+                                    <div class="col-md-12">
+                                        <div class="page-header-title">
+                                            <h5 class="m-b-10">Student List</h5>
+                                        </div>
+                                        <ul class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="book-list.html"><i class="feather icon-home"></i></a></li>
+                                            <li class="breadcrumb-item"><a href="#!">Student List</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- [ breadcrumb ] end -->
+                        <!-- [ Main Content ] start -->
+                        <div class="row">
+                            <!-- [ task-list ] start -->
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Student List</h5>
+										<div class="card-header-right">
+											<a href="/student-list/export" class="btn btn-success"><i class="fa fa-file-excel"></i> Export</a>
+											<a href="/student-list/add-student" class="btn btn-primary"><i class="fa fa-plus"></i> Add Student</a>
+										</div>
+                                    </div>
+                                    <div class="card-body task-data">
+                                        <div class="table-responsive form-material">
+											<table id="simpletable" class="table dt-responsive task-list-table table-striped table-bordered nowrap">
+												<thead>
+													<tr>
+														<th>Image</th>
+														<th>Id</th>
+														<th>Name</th>
+														<th>Roll No.</th>
+														<th>Phone No.</th>
+														<th>Download Option</th>
+													</tr>
+												</thead>
+												<tbody class="task-page">
+													<% students.forEach(function(student) { %>
+														<tr>
+															<td>
+																<a href="<%= student.file %>" download>
+																	<img src="<%= student.file %>" alt="<%= student.username %>" style="max-width: 150px; max-height: 150px;"/>
+																</a>
+															</td>
+															<td><%= student.id %></td>
+															<td><%= student.first_name %> <%= student.last_name %></td>
+															<td><%= student.roll_no %></td>
+															<td><%= student.phone_no %></td>
+															<td>
+																<a href="#" data-toggle="tooltip" data-placement="top" title="Download">
+																	<i class="fa fa-download"></i>
+																</a>
+															</td>
+														</tr>
+													<% }); %>
+												</tbody>
+											</table>
+											
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ task-list ] end -->
+                        </div>
+                        <!-- [ Main Content ] end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- [ Main Content ] end -->
+
+    <!-- Warning Section start -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 11]>
+        <div class="ie-warning">
+            <h1>Warning!!</h1>
+            <p>You are using an outdated version of Internet Explorer, please upgrade
+               <br/>to any of the following web browsers to access this website.
+            </p>
+            <div class="iew-container">
+                <ul class="iew-download">
+                    <li>
+                        <a href="http://www.google.com/chrome/">
+                            <img src="/images/browser/chrome.png" alt="Chrome">
+                            <div>Chrome</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mozilla.org/en-US/firefox/new/">
+                            <img src="/images/browser/firefox.png" alt="Firefox">
+                            <div>Firefox</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.opera.com">
+                            <img src="/images/browser/opera.png" alt="Opera">
+                            <div>Opera</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.apple.com/safari/">
+                            <img src="/images/browser/safari.png" alt="Safari">
+                            <div>Safari</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="/images/browser/ie.png" alt="">
+                            <div>IE (11 & above)</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <p>Sorry for the inconvenience!</p>
+        </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+
+    <!-- Required Js -->
+    <script src="/js/vendor-all.min.js"></script>
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/pcoded.min.js"></script>
+	
+
+
+<!-- Data tables.js -->
+<script src="/plugins/data-tables/js/datatables.min.js"></script>
+
+<script type="text/javascript">
+    setTimeout(function() {
+        $('#simpletable').DataTable();
+    }, 600);
+</script>
+
+
+</body>
+
+</html>
