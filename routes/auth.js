@@ -20,6 +20,8 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'LMS' });
 });
 
+router.get('/logout',authController.logout);
+
 router.get("/auth/google", authController.googleAuth);
 router.get("/auth/google/callback", authController.googleCallback);
 router.get("/auth/success", authController.success);

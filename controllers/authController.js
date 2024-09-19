@@ -46,3 +46,20 @@ exports.login = async (req, res) => {
 };
 
 
+exports.logout = async (req, res) => {
+    try {
+        // Destroy the session
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).render('error', { message: 'Failed to logout' });
+            }
+            // Redirect to the login page or home page after logout
+            res.redirect('/'); // Adjust the redirection as needed
+        });
+    } catch (error) {
+        // Handle unexpected errors
+        console.error(error);
+        res.status(500).render('error', { message: 'An error occurred while logging out' });
+    }
+};
+
