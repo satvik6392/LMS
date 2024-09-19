@@ -66,13 +66,13 @@ app.use((req, res, next) => {
 // app.use(upload.single('book-image'));
 
 // DB sync
-sequelize.sync({ alter: true })
-    .then(() => {
-        console.log("Database synchronized successfully with the altered table.");
-    })
-    .catch((error) => {
-        console.error("Error synchronizing the database:", error);
-    });
+// sequelize.sync({ alter: true })
+//     .then(() => {
+//         console.log("Database synchronized successfully with the altered table.");
+//     })
+//     .catch((error) => {
+//         console.error("Error synchronizing the database:", error);
+//     });
 
     // function checkLoginStatus(req, res, next) {
     //   console.log(`control inside ensureAuthenticated function: ${req.session.userid}`);
