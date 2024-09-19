@@ -1,7 +1,25 @@
 const db = require('../config/db');
 const { User } = require('../models/user');
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
+exports.googleAuth = passport.authenticate("google", {
+  scope: ["email", "profile"]
+});
+
+exports.googleCallback = passport.authenticate("google", {
+  successRedirect: "/auth/success",
+  failureRedirect: "/"
+});
+
+exports.success = async (req, res) => {
+  if (req.user) {
+    req.session.username = req.user.displayName;
+    req.session.userid = req.user.id;
+  }
+  console.log(req.user);
+  res.redirect('/book-list');
+};
 
 // login controller to logged in user
 exports.login = async (req, res) => {
@@ -13,7 +31,7 @@ exports.login = async (req, res) => {
         return res.render('error', { message: 'Invalid email or password' });
     }
 
-    
+
     const isMatch = await bcrypt.compare(password, fetchUserFromDB.dataValues.password);
     if (!isMatch) {
         return res.render('error', { message: 'Invalid email or password' });

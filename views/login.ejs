@@ -75,8 +75,11 @@
                             <div class="saprator"><span>OR</span></div>
                             <button class="btn btn-facebook mb-2 mr-2"><i
                                     class="fab fa-facebook-f"></i>facebook</button>
-                            <div class="g-signin2" data-onsuccess="onSignIn" data-onfailure="onSignInFailure"></div>
-                            <a href="#" onclick="signOut();">Sign out</a>
+
+                                    <a href="/auth/google">
+                                        <button >Google sign in</button>
+                                    </a>
+                                    
                            
                             <button class="btn btn-twitter mb-2 mr-2"><i class="fab fa-twitter"></i>Twitter</button>
                         </div>
@@ -103,26 +106,27 @@
         })
     </script>
     <script>
-        function onSignIn(googleUser) {
+        // function onSignIn(googleUser) {
+        //     debugger
           
-            console.log("inside signin function");
+        //     console.log("inside signin function");
 
-            var profile = googleUser.getBasicProfile();
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
-        function onSignInFailure(googleUser) {
-           
-            // console.log("inside signin function");
+        //     var profile = googleUser.getBasicProfile();
+        //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //     console.log('Name: ' + profile.getName());
+        //     console.log('Image URL: ' + profile.getImageUrl());
+        //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // }
+        // function onSignInFailure(googleUser) {
+        //    debugger
+        //     console.log("inside signin function");
 
-            // var profile = googleUser.getBasicProfile();
-            // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            // console.log('Name: ' + profile.getName());
-            // console.log('Image URL: ' + profile.getImageUrl());
-            // console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-        }
+        //     var profile = googleUser.getBasicProfile();
+        //     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        //     console.log('Name: ' + profile.getName());
+        //     console.log('Image URL: ' + profile.getImageUrl());
+        //     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        // }
     </script>
     <script>
         function signOut() {

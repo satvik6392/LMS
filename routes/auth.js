@@ -1,6 +1,12 @@
 var express = require('express');
-const { login } = require('../controllers/authController');
+const authController = require('../controllers/authController');
 var router = express.Router();
+
+const passport = require('passport');
+require('../config/passport');
+
+router.use(passport.initialize());
+router.use(passport.session());
 
 
 
@@ -14,7 +20,11 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'LMS' });
 });
 
-//Post method for login the user in the system
-router.post('/',login);
+router.get("/auth/google", authController.googleAuth);
+router.get("/auth/google/callback", authController.googleCallback);
+router.get("/auth/success", authController.success);
+
+
+router.post('/',authController.login);
 
 module.exports = router;
